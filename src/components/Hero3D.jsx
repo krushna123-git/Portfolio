@@ -6,20 +6,20 @@ import { Float, Sphere, Torus } from "@react-three/drei";
 function Scene() {
   return (
     <>
-      <Float speed={2}>
-        <Sphere args={[1, 32, 32]} position={[-3, 0, 0]}>
+      <Float speed={2} rotationIntensity={2}>
+        <Sphere args={[1, 64, 64]} position={[-4, 1, 0]}>
           <meshStandardMaterial color="#3b82f6" />
         </Sphere>
       </Float>
 
-      <Float speed={3}>
-        <Torus args={[1, 0.3, 16, 100]} position={[3, 1, 0]}>
+      <Float speed={3} rotationIntensity={3}>
+        <Torus args={[1.2, 0.4, 16, 100]} position={[4, 1, 0]}>
           <meshStandardMaterial color="#06b6d4" />
         </Torus>
       </Float>
 
-      <Float speed={2.5}>
-        <Sphere args={[0.7, 32, 32]} position={[0, -2, 0]}>
+      <Float speed={2.5} rotationIntensity={4}>
+        <Sphere args={[0.8, 64, 64]} position={[0, -3, 0]}>
           <meshStandardMaterial color="#8b5cf6" />
         </Sphere>
       </Float>
