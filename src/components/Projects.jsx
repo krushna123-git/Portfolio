@@ -6,7 +6,12 @@ const projects = [
     description:
       "Interactive Power BI dashboard analyzing tourism trends, visa categories, visitor behavior, top destinations and tourism KPIs.",
 
-    technologies: ["Power BI", "SQL Server", "DAX", "Power Query"],
+    technologies: [
+      "Power BI",
+      "SQL Server",
+      "DAX",
+      "Power Query",
+    ],
 
     github:
       "https://github.com/krushna123-git/Tourism-Analytics-for-Thailand",
@@ -27,7 +32,11 @@ const projects = [
     description:
       "Power BI and SQL Server dashboard for fitness member analysis, workout trends, weight loss tracking and membership insights.",
 
-    technologies: ["Power BI", "SQL Server", "DAX"],
+    technologies: [
+      "Power BI",
+      "SQL Server",
+      "DAX",
+    ],
 
     github:
       "https://github.com/krushna123-git/VTONE-FITNESS-GYM",
@@ -54,13 +63,13 @@ export default function Projects() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="text-blue-400 uppercase tracking-[4px] mb-4">
+          <p className="text-blue-400 uppercase tracking-[5px] mb-4">
             Portfolio
           </p>
 
@@ -69,9 +78,9 @@ export default function Projects() {
           </h2>
 
           <p className="text-slate-400 max-w-3xl mx-auto text-lg">
-            Business Intelligence, Power BI, SQL Server,
-            Data Visualization and Analytics projects
-            developed using enterprise reporting techniques.
+            Business Intelligence solutions built using
+            Power BI, SQL Server, DAX, Power Query and
+            modern analytics techniques.
           </p>
         </motion.div>
 
@@ -80,27 +89,41 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.01 }}
+              whileHover={{
+                scale: 1.02,
+                rotateX: 2,
+                rotateY: 2,
+              }}
+              style={{
+                transformStyle: "preserve-3d",
+              }}
               className="
+                group
                 bg-white/5
-                backdrop-blur-xl
-                border border-white/10
+                backdrop-blur-2xl
+                border
+                border-white/10
                 rounded-3xl
                 overflow-hidden
                 shadow-2xl
+                hover:border-blue-500/40
+                hover:shadow-blue-500/20
+                transition-all
+                duration-500
               "
             >
-              <div className="grid lg:grid-cols-2 gap-0">
+              <div className="grid lg:grid-cols-2">
 
-                {/* LEFT SIDE */}
+                {/* LEFT */}
                 <div className="p-8 md:p-12">
 
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+
                     <span className="text-green-400 text-sm">
                       Live Dashboard Available
                     </span>
@@ -117,19 +140,26 @@ export default function Projects() {
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-3 mb-8">
                     {project.technologies.map((tech) => (
-                      <span
+                      <motion.span
                         key={tech}
+                        whileHover={{
+                          scale: 1.1,
+                          y: -3,
+                        }}
                         className="
-                          px-4 py-2
+                          px-4
+                          py-2
                           rounded-full
                           bg-blue-500/20
-                          border border-blue-500/20
+                          border
+                          border-blue-500/20
                           text-blue-300
                           text-sm
+                          cursor-pointer
                         "
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
 
@@ -141,17 +171,23 @@ export default function Projects() {
 
                     <div className="grid sm:grid-cols-2 gap-3">
                       {project.highlights.map((item) => (
-                        <div
+                        <motion.div
                           key={item}
+                          whileHover={{
+                            scale: 1.03,
+                            x: 5,
+                          }}
                           className="
                             bg-slate-800/50
-                            border border-white/10
+                            border
+                            border-white/10
                             rounded-xl
                             p-3
+                            transition-all
                           "
                         >
                           ✓ {item}
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
@@ -165,11 +201,13 @@ export default function Projects() {
                       rel="noreferrer"
                       className="
                         text-center
-                        px-6 py-3
+                        px-6
+                        py-3
                         rounded-xl
                         bg-blue-600
                         hover:bg-blue-700
-                        transition
+                        hover:scale-105
+                        transition-all
                       "
                     >
                       GitHub Repository
@@ -181,32 +219,50 @@ export default function Projects() {
                       rel="noreferrer"
                       className="
                         text-center
-                        px-6 py-3
+                        px-6
+                        py-3
                         rounded-xl
                         bg-green-600
                         hover:bg-green-700
-                        transition
+                        hover:scale-105
+                        transition-all
                       "
                     >
-                        Live Dashboard
+                      Live Dashboard
                     </a>
 
                   </div>
+
                 </div>
 
-                {/* RIGHT SIDE */}
-                <div className="bg-slate-900">
-
-                  <iframe
-                    title={project.title}
-                    src={project.dashboard}
-                    width="100%"
-                    height="100%"
-                    className="min-h-[350px] md:min-h-[500px]"
-                    frameBorder="0"
-                    allowFullScreen
-                  />
-
+                {/* RIGHT */}
+                <div
+                  className="
+                    bg-slate-900
+                    overflow-hidden
+                  "
+                >
+                  <div
+                    className="
+                      h-full
+                      transition-all
+                      duration-700
+                      group-hover:scale-105
+                    "
+                  >
+                    <iframe
+                      title={project.title}
+                      src={project.dashboard}
+                      width="100%"
+                      height="100%"
+                      className="
+                        min-h-[350px]
+                        md:min-h-[550px]
+                      "
+                      frameBorder="0"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
 
               </div>
