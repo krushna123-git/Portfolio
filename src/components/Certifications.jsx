@@ -4,29 +4,22 @@ const certifications = [
   {
     title: "Data Science & Machine Learning",
     provider: "Datamites",
-    description:
-      "Comprehensive training in Data Science, Machine Learning, Data Analysis and predictive modeling.",
+    year: "2024",
   },
-
   {
     title: "Full Stack Web Development",
     provider: "DevTown",
-    description:
-      "Hands-on training covering HTML, CSS, JavaScript, React, Node.js and database development.",
+    year: "2022",
   },
-
   {
     title: "Advanced Java",
     provider: "Professional Training",
-    description:
-      "Object-oriented programming, collections framework, JDBC and enterprise application concepts.",
+    year: "2022",
   },
-
   {
     title: "Power BI & SQL Analytics",
-    provider: "Professional Learning",
-    description:
-      "Dashboard development, DAX, Power Query, SQL querying and business intelligence reporting.",
+    provider: "Industry Training",
+    year: "2023",
   },
 ];
 
@@ -34,7 +27,7 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="py-24 px-6 bg-slate-900"
+      className="py-24 px-4 md:px-6 bg-slate-900"
     >
       <div className="max-w-7xl mx-auto">
 
@@ -44,75 +37,84 @@ export default function Certifications() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <p className="text-blue-400 uppercase tracking-widest mb-3">
+          <p className="text-blue-400 uppercase tracking-[5px] mb-4">
             Learning Journey
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4">
             Certifications
           </h2>
 
-          <p className="text-slate-400 mt-4 max-w-3xl mx-auto">
+          <p className="text-slate-400 max-w-3xl mx-auto">
             Professional certifications and training programs
             that strengthened my expertise in Data Analytics,
-            Business Intelligence, Software Development and
-            Dashboard Engineering.
+            Business Intelligence and Software Development.
           </p>
         </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {certifications.map((cert, index) => (
             <motion.div
-              key={cert.title}
+              key={index}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.1,
-              }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               whileHover={{
-                y: -8,
-                scale: 1.02,
+                scale: 1.05,
+                rotateY: 8,
+                rotateX: 4,
+                y: -10,
               }}
               className="
                 bg-white/5
                 backdrop-blur-xl
-                border border-white/10
+                border
+                border-white/10
                 rounded-3xl
                 p-8
+                text-center
                 hover:border-blue-500
+                hover:shadow-2xl
+                hover:shadow-blue-500/20
                 transition-all
+                duration-500
               "
             >
-              <div className="flex items-center justify-between mb-4">
-                <span
-                  className="
-                    px-3 py-2
-                    rounded-full
-                    bg-blue-500/20
-                    text-blue-300
-                    text-sm
-                  "
-                >
-                  Certified
-                </span>
+              <div
+                className="
+                  w-16
+                  h-16
+                  mx-auto
+                  mb-6
+                  rounded-full
+                  bg-gradient-to-r
+                  from-blue-500
+                  to-cyan-400
+                  flex
+                  items-center
+                  justify-center
+                  text-2xl
+                  font-bold
+                "
+              >
+                ✓
               </div>
 
-              <h3 className="text-2xl font-bold mb-2">
+              <h3 className="text-xl font-bold mb-3">
                 {cert.title}
               </h3>
 
-              <p className="text-cyan-400 mb-4">
+              <p className="text-cyan-400 mb-2">
                 {cert.provider}
               </p>
 
-              <p className="text-slate-300 leading-7">
-                {cert.description}
+              <p className="text-slate-400">
+                {cert.year}
               </p>
             </motion.div>
           ))}

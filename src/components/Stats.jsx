@@ -1,81 +1,84 @@
+import { motion } from "framer-motion";
 
+const stats = [
+  {
+    number: "3.7+",
+    title: "Years Experience",
+  },
+  {
+    number: "20+",
+    title: "Dashboards Created",
+  },
+  {
+    number: "10M+",
+    title: "Records Analyzed",
+  },
+  {
+    number: "100+",
+    title: "Reports Delivered",
+  },
+];
 
 export default function Stats() {
-  const stats = [
-    {
-      number: 2.5,
-      suffix: "+",
-      title: "Years Experience",
-    },
-    {
-      number: 10,
-      suffix: "+",
-      title: "Projects Completed",
-    },
-    {
-      number: 10000000,
-      suffix: "+",
-      title: "Records Analyzed",
-    },
-    {
-      number: 100,
-      suffix: "+",
-      title: "Reports Delivered",
-    },
-  ];
-
   return (
     <section
       id="stats"
-      className="py-24 bg-gradient-to-b from-slate-950 to-slate-900"
+      className="py-20 px-4 md:px-6 bg-slate-900"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.h2
+      <div className="max-w-7xl mx-auto">
+
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center text-4xl md:text-5xl font-bold mb-16"
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          Professional Highlights
-        </motion.h2>
+          <p className="text-blue-400 uppercase tracking-[5px] mb-4">
+            Achievements
+          </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((item, index) => (
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Professional Highlights
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {stats.map((item) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
+              key={item.title}
               whileHover={{
                 scale: 1.05,
-                rotateY: 5,
+                rotateY: 8,
+                y: -8,
               }}
               className="
-                bg-white/10
+                bg-white/5
                 backdrop-blur-xl
                 border border-white/10
                 rounded-3xl
                 p-8
                 text-center
-                shadow-xl
+                hover:border-blue-500
+                hover:shadow-blue-500/20
+                hover:shadow-2xl
+                transition-all
+                duration-500
               "
             >
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-400">
-                <CountUp
-                  end={item.number}
-                  duration={3}
-                  separator=","
-                  decimals={item.number === 2.5 ? 1 : 0}
-                />
-                {item.suffix}
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-400 mb-3">
+                {item.number}
               </h3>
 
-              <p className="text-slate-300 mt-4 text-lg">
+              <p className="text-slate-300">
                 {item.title}
               </p>
             </motion.div>
           ))}
+
         </div>
+
       </div>
     </section>
   );
