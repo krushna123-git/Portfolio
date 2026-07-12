@@ -1,33 +1,78 @@
+import CountUp from "react-countup";
 import { motion } from "framer-motion";
 
-const stats = [
-  { number: "2.5+", label: "Years Experience" },
-  { number: "2", label: "Power BI Projects" },
-  { number: "10M+", label: "Records Analyzed" },
-  { number: "100+", label: "Reports Delivered" },
-];
-
-
 export default function Stats() {
-  return (
-    <section className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Highlights
-        </h2>
+  const stats = [
+    {
+      number: 2.5,
+      suffix: "+",
+      title: "Years Experience",
+    },
+    {
+      number: 10,
+      suffix: "+",
+      title: "Projects Completed",
+    },
+    {
+      number: 10000000,
+      suffix: "+",
+      title: "Records Analyzed",
+    },
+    {
+      number: 100,
+      suffix: "+",
+      title: "Reports Delivered",
+    },
+  ];
 
-        <div className="grid md:grid-cols-4 gap-6">
-          {stats.map((item) => (
+  return (
+    <section
+      id="stats"
+      className="py-24 bg-gradient-to-b from-slate-950 to-slate-900"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center text-4xl md:text-5xl font-bold mb-16"
+        >
+          Professional Highlights
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((item, index) => (
             <motion.div
-              key={item.label}
-              whileHover={{ scale: 1.05 }}
-              className="bg-slate-800 p-8 rounded-2xl text-center shadow-lg"
+              key={index}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              whileHover={{
+                scale: 1.05,
+                rotateY: 5,
+              }}
+              className="
+                bg-white/10
+                backdrop-blur-xl
+                border border-white/10
+                rounded-3xl
+                p-8
+                text-center
+                shadow-xl
+              "
             >
-              <h3 className="text-4xl font-bold text-blue-400">
-                {item.number}
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-400">
+                <CountUp
+                  end={item.number}
+                  duration={3}
+                  separator=","
+                  decimals={item.number === 2.5 ? 1 : 0}
+                />
+                {item.suffix}
               </h3>
-              <p className="text-slate-300 mt-2">
-                {item.label}
+
+              <p className="text-slate-300 mt-4 text-lg">
+                {item.title}
               </p>
             </motion.div>
           ))}

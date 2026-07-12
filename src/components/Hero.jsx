@@ -25,7 +25,7 @@ export default function Hero() {
           </h2>
 
           <p className="mt-6 text-slate-400 text-lg max-w-xl">
-            BCA Graduate with 2.5+ years of experience in MIS,
+            BCA Graduate with 3.7+ years of experience in MIS,
             Power BI, SQL Server and Business Intelligence.
             Passionate about transforming raw data into
             actionable business insights.
