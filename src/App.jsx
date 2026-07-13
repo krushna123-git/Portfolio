@@ -15,8 +15,7 @@ import ScrollProgress from "./components/ScrollProgress";
 import ProgressBar from "./components/ProgressBar";
 import HireMe from "./components/HireMe";
 import CursorGlow from "./components/CursorGlow";
-import { useState } from "react";
-import ResumeModal from "./ResumeModal";
+import ResumeModal from "./components/ResumeModal";
 import Loader from "./components/Loader";
 
 function App() {
