@@ -16,7 +16,6 @@ const projects = [
       "SQL Server",
       "DAX",
       "Power Query",
-      "Data Visualization",
     ],
 
     github:
@@ -72,15 +71,14 @@ export default function Projects() {
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="text-blue-400 uppercase tracking-[4px] mb-4">
+          <p className="text-blue-400 uppercase tracking-[5px] mb-4">
             Portfolio
           </p>
 
@@ -98,17 +96,16 @@ export default function Projects() {
 
         <div className="space-y-24">
 
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              whileHover={{
-                y: -8,
-              }}
+              whileHover={{ y: -8 }}
               className="
+                group
                 bg-white/5
                 backdrop-blur-xl
                 border
@@ -116,6 +113,10 @@ export default function Projects() {
                 rounded-3xl
                 overflow-hidden
                 shadow-2xl
+                hover:border-blue-500/40
+                hover:shadow-blue-500/20
+                transition-all
+                duration-500
               "
             >
               <div className="grid lg:grid-cols-2">
@@ -177,11 +178,14 @@ export default function Projects() {
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
                   <div className="flex flex-wrap gap-3 mb-8">
                     {project.technologies.map((tech) => (
-                      <span
+                      <motion.span
                         key={tech}
+                        whileHover={{
+                          scale: 1.1,
+                          y: -3,
+                        }}
                         className="
                           px-4
                           py-2
@@ -191,14 +195,14 @@ export default function Projects() {
                           border-blue-500/20
                           text-blue-300
                           text-sm
+                          cursor-pointer
                         "
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
 
-                  {/* Highlights */}
                   <div className="mb-10">
                     <h4 className="text-xl font-semibold text-cyan-400 mb-4">
                       Project Highlights
@@ -206,23 +210,27 @@ export default function Projects() {
 
                     <div className="grid sm:grid-cols-2 gap-3">
                       {project.highlights.map((item) => (
-                        <div
+                        <motion.div
                           key={item}
+                          whileHover={{
+                            scale: 1.03,
+                            x: 5,
+                          }}
                           className="
                             bg-slate-900
                             border
                             border-white/10
                             rounded-xl
                             p-3
+                            transition-all
                           "
                         >
                           ✓ {item}
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
 
                     <a
