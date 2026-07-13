@@ -6,10 +6,11 @@ import fitnessImage from "../assets/fitness-dashboard.png";
 const projects = [
   {
     title: "Tourism Analytics for Thailand",
-    image: tourismImage,
 
     description:
-      "Interactive Power BI dashboard analyzing tourism trends, visitor behavior, visa categories, top destinations, revenue metrics and tourism KPIs.",
+      "Interactive Power BI dashboard analyzing tourism trends, visa categories, visitor behavior, top destinations and tourism KPIs.",
+
+    image: tourismImage,
 
     technologies: [
       "Power BI",
@@ -29,22 +30,21 @@ const projects = [
       "Visa Category Insights",
       "Top Destination Analytics",
       "Interactive KPI Dashboard",
-      "Visitor Behavior Analysis",
     ],
   },
 
   {
     title: "VTONE Fitness Gym Analytics",
-    image: fitnessImage,
 
     description:
-      "Comprehensive fitness analytics dashboard developed using Power BI and SQL Server for membership tracking, workout monitoring, weight-loss analysis and business KPI reporting.",
+      "Power BI and SQL Server dashboard for fitness member analysis, workout trends, weight loss tracking and membership insights.",
+
+    image: fitnessImage,
 
     technologies: [
       "Power BI",
       "SQL Server",
       "DAX",
-      "Data Analytics",
     ],
 
     github:
@@ -57,8 +57,7 @@ const projects = [
       "Membership Analysis",
       "Workout Tracking",
       "Weight Loss Monitoring",
-      "KPI Reporting",
-      "Performance Analytics",
+      "Business KPI Reporting",
     ],
   },
 ];
@@ -67,45 +66,49 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-24 px-4 md:px-6 bg-slate-950"
+      className="py-24 px-4 sm:px-6 bg-slate-950"
     >
       <div className="max-w-7xl mx-auto">
 
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="text-blue-400 uppercase tracking-[5px] mb-4">
+          <p className="text-blue-400 uppercase tracking-[4px] mb-3">
             Portfolio
           </p>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold">
             Featured Projects
           </h2>
 
-          <p className="text-slate-400 max-w-3xl mx-auto text-lg">
-            Real-world Business Intelligence solutions,
-            dashboard development projects and data
-            analytics implementations built using
-            Power BI, SQL Server and Microsoft technologies.
+          <p className="text-slate-400 mt-5 max-w-3xl mx-auto text-lg">
+            Real-world Business Intelligence solutions
+            developed using Power BI, SQL Server,
+            DAX and Reporting Automation.
           </p>
         </motion.div>
 
-        <div className="space-y-24">
+        {/* Project Cards */}
+        <div className="space-y-16">
 
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
+              whileHover={{
+                rotateX: 2,
+                rotateY: 2,
+                scale: 1.02,
+              }}
               className="
-                group
                 bg-white/5
                 backdrop-blur-xl
                 border
@@ -113,16 +116,21 @@ export default function Projects() {
                 rounded-3xl
                 overflow-hidden
                 shadow-2xl
-                hover:border-blue-500/40
-                hover:shadow-blue-500/20
+                hover:border-blue-500
                 transition-all
                 duration-500
               "
             >
-              <div className="grid lg:grid-cols-2">
+              <div
+                className="
+                  grid
+                  lg:grid-cols-2
+                  gap-0
+                "
+              >
 
-                {/* IMAGE SIDE */}
-                <div className="relative overflow-hidden">
+                {/* Dashboard Image */}
+                <div className="overflow-hidden">
 
                   <img
                     src={project.image}
@@ -131,106 +139,81 @@ export default function Projects() {
                       w-full
                       h-full
                       object-cover
-                      transition-all
+                      transition-transform
                       duration-700
                       hover:scale-110
                     "
                   />
 
-                  <div
-                    className="
-                      absolute
-                      inset-0
-                      bg-gradient-to-t
-                      from-slate-950
-                      via-transparent
-                      to-transparent
-                    "
-                  />
+                </div>
 
-                  <div className="absolute bottom-6 left-6">
-                    <span
-                      className="
-                        bg-green-500/20
-                        text-green-400
-                        px-4
-                        py-2
-                        rounded-full
-                        text-sm
-                        border
-                        border-green-500/30
-                      "
-                    >
-                      Live Dashboard
+                {/* Content */}
+                <div className="p-8 md:p-10">
+
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+
+                    <span className="text-green-400 text-sm">
+                      Live Dashboard Available
                     </span>
                   </div>
 
-                </div>
-
-                {/* CONTENT SIDE */}
-                <div className="p-8 md:p-12">
-
-                  <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                  <h3 className="text-3xl font-bold mb-5">
                     {project.title}
                   </h3>
 
-                  <p className="text-slate-300 leading-8 mb-8">
+                  <p className="text-slate-300 leading-8 mb-6">
                     {project.description}
                   </p>
 
+                  {/* Technologies */}
                   <div className="flex flex-wrap gap-3 mb-8">
+
                     {project.technologies.map((tech) => (
-                      <motion.span
+                      <span
                         key={tech}
-                        whileHover={{
-                          scale: 1.1,
-                          y: -3,
-                        }}
                         className="
-                          px-4
-                          py-2
+                          px-4 py-2
                           rounded-full
                           bg-blue-500/20
-                          border
-                          border-blue-500/20
                           text-blue-300
                           text-sm
-                          cursor-pointer
                         "
                       >
                         {tech}
-                      </motion.span>
+                      </span>
                     ))}
+
                   </div>
 
-                  <div className="mb-10">
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-4">
-                      Project Highlights
+                  {/* Highlights */}
+                  <div className="mb-8">
+
+                    <h4 className="text-cyan-400 font-semibold mb-4">
+                      Key Highlights
                     </h4>
 
                     <div className="grid sm:grid-cols-2 gap-3">
+
                       {project.highlights.map((item) => (
-                        <motion.div
+                        <div
                           key={item}
-                          whileHover={{
-                            scale: 1.03,
-                            x: 5,
-                          }}
                           className="
                             bg-slate-900
                             border
                             border-white/10
                             rounded-xl
                             p-3
-                            transition-all
                           "
                         >
                           ✓ {item}
-                        </motion.div>
+                        </div>
                       ))}
+
                     </div>
                   </div>
 
+                  {/* Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
 
                     <a
@@ -238,13 +221,12 @@ export default function Projects() {
                       target="_blank"
                       rel="noreferrer"
                       className="
-                        text-center
-                        px-6
-                        py-3
+                        px-6 py-3
                         rounded-xl
                         bg-blue-600
                         hover:bg-blue-700
-                        transition-all
+                        transition
+                        text-center
                       "
                     >
                       GitHub Repository
@@ -255,16 +237,15 @@ export default function Projects() {
                       target="_blank"
                       rel="noreferrer"
                       className="
-                        text-center
-                        px-6
-                        py-3
+                        px-6 py-3
                         rounded-xl
                         bg-green-600
                         hover:bg-green-700
-                        transition-all
+                        transition
+                        text-center
                       "
                     >
-                      View Live Dashboard
+                      Live Dashboard
                     </a>
 
                   </div>
