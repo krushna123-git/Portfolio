@@ -15,7 +15,7 @@ import ScrollProgress from "./components/ScrollProgress";
 import ProgressBar from "./components/ProgressBar";
 import HireMe from "./components/HireMe";
 import CursorGlow from "./components/CursorGlow";
-import ParticlesBackground from "./components/ParticlesBackground";
+
 import Loader from "./components/Loader";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
       {/* Effects */}
       <ProgressBar />
       <CursorGlow />
-      <ParticlesBackground />
+      
       <ScrollProgress />
 
       {/* Floating Hire Button */}
