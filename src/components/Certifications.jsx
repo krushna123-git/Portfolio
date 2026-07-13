@@ -4,7 +4,7 @@ const certifications = [
   {
     title: "Data Science & Machine Learning",
     provider: "Datamites",
-    year: "2024",
+    year: "2026",
   },
   {
     title: "Full Stack Web Development",
@@ -19,7 +19,7 @@ const certifications = [
   {
     title: "Power BI & SQL Analytics",
     provider: "Industry Training",
-    year: "2023",
+    year: "2024",
   },
 ];
 
