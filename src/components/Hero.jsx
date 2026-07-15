@@ -4,6 +4,29 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import ResumeModal from "./ResumeModal";
 
+const floatingSkills = [
+  {
+    name: "Power BI",
+    className: "top-4 -left-8",
+  },
+  {
+    name: "SQL",
+    className: "top-16 -right-8",
+  },
+  {
+    name: "Excel",
+    className: "bottom-24 -left-10",
+  },
+  {
+    name: "DAX",
+    className: "bottom-10 -right-8",
+  },
+  {
+    name: "Fabric",
+    className: "top-1/2 -right-14",
+  },
+];
+
 export default function Hero() {
   const [openResume, setOpenResume] = useState(false);
 
@@ -20,7 +43,7 @@ export default function Hero() {
       >
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* LEFT */}
+          {/* LEFT SECTION */}
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
@@ -81,24 +104,23 @@ export default function Hero() {
             </p>
 
             {/* BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+            <div className="flex flex-wrap gap-4 mt-10">
 
               <a
                 href="https://www.linkedin.com/in/kumbhare-krushna-bi"
                 target="_blank"
                 rel="noreferrer"
                 className="
-                  px-8
-                  py-4
+                  flex items-center gap-2
+                  px-6 py-4
                   bg-blue-600
                   rounded-xl
                   hover:bg-blue-700
                   hover:scale-105
                   transition-all
-                  text-center
                 "
               >
-                LinkedIn
+                🔗 LinkedIn
               </a>
 
               <a
@@ -106,24 +128,23 @@ export default function Hero() {
                 target="_blank"
                 rel="noreferrer"
                 className="
-                  px-8
-                  py-4
+                  flex items-center gap-2
+                  px-6 py-4
                   bg-slate-700
                   rounded-xl
                   hover:bg-slate-600
                   hover:scale-105
                   transition-all
-                  text-center
                 "
               >
-                GitHub
+                💻 GitHub
               </a>
 
               <button
                 onClick={() => setOpenResume(true)}
                 className="
-                  px-8
-                  py-4
+                  flex items-center gap-2
+                  px-6 py-4
                   bg-green-600
                   rounded-xl
                   hover:bg-green-700
@@ -131,30 +152,59 @@ export default function Hero() {
                   transition-all
                 "
               >
-                View Resume
+                📄 View Resume
               </button>
 
               <a
                 href="/resume.pdf"
                 download
                 className="
-                  px-8
-                  py-4
+                  flex items-center gap-2
+                  px-6 py-4
                   bg-cyan-600
                   rounded-xl
                   hover:bg-cyan-700
                   hover:scale-105
                   transition-all
-                  text-center
                 "
               >
-                Download Resume
+                ⬇ Download Resume
               </a>
 
             </div>
+
+            {/* KPI Cards */}
+            <div className="grid grid-cols-3 gap-4 mt-10">
+
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 text-center border border-white/10">
+                <div className="text-3xl mb-2">📊</div>
+                <h4 className="text-2xl font-bold">20+</h4>
+                <p className="text-slate-400 text-sm">
+                  Dashboards
+                </p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 text-center border border-white/10">
+                <div className="text-3xl mb-2">🗄️</div>
+                <h4 className="text-2xl font-bold">10M+</h4>
+                <p className="text-slate-400 text-sm">
+                  Records
+                </p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 text-center border border-white/10">
+                <div className="text-3xl mb-2">📑</div>
+                <h4 className="text-2xl font-bold">20+</h4>
+                <p className="text-slate-400 text-sm">
+                  Reports
+                </p>
+              </div>
+
+            </div>
+
           </motion.div>
 
-          {/* RIGHT */}
+          {/* RIGHT SECTION */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
@@ -163,30 +213,60 @@ export default function Hero() {
           >
             <div className="relative">
 
+              {floatingSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{
+                    duration: 3 + index,
+                    repeat: Infinity,
+                  }}
+                  className={`
+                    absolute
+                    ${skill.className}
+                    px-4 py-2
+                    rounded-full
+                    bg-white/10
+                    backdrop-blur-xl
+                    border border-white/10
+                    text-blue-300
+                    text-sm
+                    hidden md:block
+                  `}
+                >
+                  {skill.name}
+                </motion.div>
+              ))}
+
               <div
                 className="
                   absolute
                   inset-0
-                  bg-blue-500
+                  bg-gradient-to-r
+                  from-blue-500
+                  via-cyan-500
+                  to-purple-500
                   blur-[120px]
                   opacity-30
                   rounded-full
+                  animate-pulse
                 "
               />
 
               <motion.div
-                whileHover={{
-                  rotateY: 10,
-                  rotateX: 5,
-                  scale: 1.03,
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
                 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{
+                  scale: 1.04,
+                }}
                 className="
                   relative
                   bg-white/5
                   backdrop-blur-xl
-                  border
-                  border-white/10
+                  border border-white/10
                   rounded-full
                   p-3
                 "

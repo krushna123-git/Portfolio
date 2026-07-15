@@ -9,7 +9,6 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
-import Stats from "./components/Stats";
 import Footer from "./components/Footer";
 import ScrollProgress from "./components/ScrollProgress";
 import ProgressBar from "./components/ProgressBar";
@@ -17,6 +16,8 @@ import HireMe from "./components/HireMe";
 import CursorGlow from "./components/CursorGlow";
 import ResumeModal from "./components/ResumeModal";
 import Loader from "./components/Loader";
+import Services from "./components/Services";
+import Technologies from "./components/Technologies";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -38,7 +39,7 @@ function App() {
       {/* Effects */}
       <ProgressBar />
       <CursorGlow />
-      
+
       <ScrollProgress />
 
       {/* Floating Hire Button */}
@@ -50,8 +51,9 @@ function App() {
       {/* Main Content */}
       <Navbar />
       <Hero />
-      <Stats />
       <About />
+      <Technologies />
+      <Services />
       <Skills />
       <Experience />
       <Projects />

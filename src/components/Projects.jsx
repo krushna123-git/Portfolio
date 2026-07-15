@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import tourismImage from "../assets/tourism-dashboard.png";
 import fitnessImage from "../assets/fitness-dashboard.png";
@@ -63,6 +64,8 @@ const projects = [
 ];
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <section
       id="projects"
@@ -96,7 +99,7 @@ export default function Projects() {
         {/* Project Cards */}
         <div className="space-y-16">
 
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 80 }}
@@ -104,8 +107,6 @@ export default function Projects() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               whileHover={{
-                rotateX: 2,
-                rotateY: 2,
                 scale: 1.02,
               }}
               className="
@@ -121,17 +122,13 @@ export default function Projects() {
                 duration-500
               "
             >
-              <div
-                className="
-                  grid
-                  lg:grid-cols-2
-                  gap-0
-                "
-              >
+              <div className="grid lg:grid-cols-2 gap-0">
 
                 {/* Dashboard Image */}
-                <div className="overflow-hidden">
-
+                <div
+                  className="overflow-hidden cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
+                >
                   <img
                     src={project.image}
                     alt={project.title}
@@ -144,7 +141,6 @@ export default function Projects() {
                       hover:scale-110
                     "
                   />
-
                 </div>
 
                 {/* Content */}
@@ -168,7 +164,6 @@ export default function Projects() {
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-3 mb-8">
-
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
@@ -183,7 +178,6 @@ export default function Projects() {
                         {tech}
                       </span>
                     ))}
-
                   </div>
 
                   {/* Highlights */}
@@ -211,6 +205,7 @@ export default function Projects() {
                       ))}
 
                     </div>
+
                   </div>
 
                   {/* Buttons */}
@@ -259,6 +254,108 @@ export default function Projects() {
         </div>
 
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="
+              fixed
+              inset-0
+              bg-black/80
+              backdrop-blur-md
+              z-50
+              flex
+              items-center
+              justify-center
+              p-4
+            "
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+              className="
+                bg-slate-900
+                border
+                border-white/10
+                rounded-3xl
+                overflow-hidden
+                max-w-5xl
+                w-full
+              "
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full max-h-[500px] object-cover"
+              />
+
+              <div className="p-8">
+
+                <h3 className="text-3xl font-bold mb-4">
+                  {selectedProject.title}
+                </h3>
+
+                <p className="text-slate-300 mb-8">
+                  {selectedProject.description}
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="
+                      px-6 py-3
+                      rounded-xl
+                      bg-blue-600
+                      hover:bg-blue-700
+                    "
+                  >
+                    GitHub Repository
+                  </a>
+
+                  <a
+                    href={selectedProject.dashboard}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="
+                      px-6 py-3
+                      rounded-xl
+                      bg-green-600
+                      hover:bg-green-700
+                    "
+                  >
+                    Open Dashboard
+                  </a>
+
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="
+                      px-6 py-3
+                      rounded-xl
+                      bg-slate-700
+                      hover:bg-slate-600
+                    "
+                  >
+                    Close
+                  </button>
+
+                </div>
+
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
