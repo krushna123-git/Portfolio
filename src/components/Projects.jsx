@@ -108,8 +108,10 @@ export default function Projects() {
               viewport={{ once: true }}
               whileHover={{
                 scale: 1.02,
+                y: -8,
               }}
               className="
+                relative
                 bg-white/5
                 backdrop-blur-xl
                 border
@@ -118,6 +120,8 @@ export default function Projects() {
                 overflow-hidden
                 shadow-2xl
                 hover:border-blue-500
+                hover:shadow-blue-500/30
+                hover:shadow-[0_0_40px_rgba(59,130,246,0.25)]
                 transition-all
                 duration-500
               "
@@ -126,7 +130,12 @@ export default function Projects() {
 
                 {/* Dashboard Image */}
                 <div
-                  className="overflow-hidden cursor-pointer"
+                  className="
+                    relative
+                    overflow-hidden
+                    cursor-pointer
+                    group
+                  "
                   onClick={() => setSelectedProject(project)}
                 >
                   <img
@@ -136,9 +145,25 @@ export default function Projects() {
                       w-full
                       h-full
                       object-cover
-                      transition-transform
+                      transition-all
                       duration-700
-                      hover:scale-110
+                      group-hover:scale-110
+                      group-hover:brightness-110
+                    "
+                  />
+
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      bg-gradient-to-t
+                      from-black/70
+                      via-transparent
+                      to-transparent
+                      opacity-0
+                      group-hover:opacity-100
+                      transition
+                      duration-500
                     "
                   />
                 </div>
@@ -146,13 +171,34 @@ export default function Projects() {
                 {/* Content */}
                 <div className="p-8 md:p-10">
 
-                  <div className="flex items-center gap-3 mb-5">
+                  {/* Animated Badge */}
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                    }}
+                    className="
+                      inline-flex
+                      items-center
+                      gap-3
+                      mb-5
+                      px-4
+                      py-2
+                      rounded-full
+                      bg-green-500/10
+                      border
+                      border-green-500/20
+                    "
+                  >
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
 
-                    <span className="text-green-400 text-sm">
+                    <span className="text-green-400 text-sm font-medium">
                       Live Dashboard Available
                     </span>
-                  </div>
+                  </motion.div>
 
                   <h3 className="text-3xl font-bold mb-5">
                     {project.title}
@@ -164,6 +210,7 @@ export default function Projects() {
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-3 mb-8">
+
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
@@ -178,6 +225,7 @@ export default function Projects() {
                         {tech}
                       </span>
                     ))}
+
                   </div>
 
                   {/* Highlights */}
@@ -198,6 +246,8 @@ export default function Projects() {
                             border-white/10
                             rounded-xl
                             p-3
+                            hover:border-blue-500
+                            transition
                           "
                         >
                           ✓ {item}
@@ -220,7 +270,9 @@ export default function Projects() {
                         rounded-xl
                         bg-blue-600
                         hover:bg-blue-700
-                        transition
+                        hover:scale-105
+                        transition-all
+                        duration-300
                         text-center
                       "
                     >
@@ -236,7 +288,9 @@ export default function Projects() {
                         rounded-xl
                         bg-green-600
                         hover:bg-green-700
-                        transition
+                        hover:scale-105
+                        transition-all
+                        duration-300
                         text-center
                       "
                     >
@@ -313,12 +367,7 @@ export default function Projects() {
                     href={selectedProject.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="
-                      px-6 py-3
-                      rounded-xl
-                      bg-blue-600
-                      hover:bg-blue-700
-                    "
+                    className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700"
                   >
                     GitHub Repository
                   </a>
@@ -327,24 +376,14 @@ export default function Projects() {
                     href={selectedProject.dashboard}
                     target="_blank"
                     rel="noreferrer"
-                    className="
-                      px-6 py-3
-                      rounded-xl
-                      bg-green-600
-                      hover:bg-green-700
-                    "
+                    className="px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700"
                   >
                     Open Dashboard
                   </a>
 
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="
-                      px-6 py-3
-                      rounded-xl
-                      bg-slate-700
-                      hover:bg-slate-600
-                    "
+                    className="px-6 py-3 rounded-xl bg-slate-700 hover:bg-slate-600"
                   >
                     Close
                   </button>
@@ -352,6 +391,7 @@ export default function Projects() {
                 </div>
 
               </div>
+
             </motion.div>
           </motion.div>
         )}
